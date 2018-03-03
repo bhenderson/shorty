@@ -45,4 +45,16 @@ class ShortCodeTest < ActiveSupport::TestCase
       end
     end
   end
+
+  def test_stats
+    req = "user/agent"
+    def req.user_agent() self end
+    sc = ShortCode.lookup(shorty.code, req)
+    assert_equal sc, shorty
+    assert_equal req, sc.stats.last.user_agent
+  end
+
+  def shorty
+    @shorty ||= ShortCode.create(url: "http://example")
+  end
 end

@@ -23,8 +23,13 @@ class ShortCodesControllerTest < ActionDispatch::IntegrationTest
   def test_show
     @shorty = ShortCode.create url: @url
 
-    get short_code_url(@code)
+    assert_difference('Stat.count') do
+      get short_code_url(@code), params: {}, headers: { "HTTP_USER_AGENT" => "rails/test" }
+    end
     assert_redirected_to @url
+    @stat = Stat.last
+    assert_equal @shorty.id, @stat.short_code_id
+    assert_equal "rails/test", @stat.user_agent
   end
 
   def test_show_invalid_code

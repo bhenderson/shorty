@@ -16,7 +16,7 @@ class ShortCodesController < ApplicationController
 
   def show
     code = params[:code]
-    @shorty = ShortCode.find_by(code: code)
+    @shorty = ShortCode.lookup(code, request)
 
     respond_to do |format|
       format.html {

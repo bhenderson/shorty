@@ -1,5 +1,17 @@
 class ShortCode < ApplicationRecord
 
+  has_many :stats
+
+  def self.lookup(code, request)
+    shorty = find_by(code: code)
+
+    if shorty
+      shorty.stats.create(user_agent: request.user_agent)
+    end
+
+    shorty
+  end
+
   def self.valid_url?(url)
     case URI(url)
     when URI::HTTP, URI::HTTPS then true

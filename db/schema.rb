@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302201114) do
+ActiveRecord::Schema.define(version: 20180303182931) do
 
   create_table "short_codes", force: :cascade do |t|
     t.string "code", limit: 16
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 20180302201114) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_short_codes_on_code", unique: true
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "short_code_id"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["short_code_id"], name: "index_stats_on_short_code_id"
   end
 
 end
