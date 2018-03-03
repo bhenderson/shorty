@@ -1,0 +1,25 @@
+= form_for ShortCode.new(url: flash["url"]) do |f|
+  - if flash.alert
+    .alert.alert-warning
+      - flash.alert.each do |message|
+        = message
+        %br
+  .h3.mb-3.font-weight-normal Hello Friend
+  .form-group
+    = f.text_field :url, class: 'form-control', placeholder: 'http://example.com', type: :url
+  .form-group
+    %button{ type: :submit, class: 'btn btn-primary btn-block' } Generate a short url!
+
+  - if flash.notice
+    .alert.alert-success
+      = flash.notice
+
+  - if @shorty
+    Your code is: 
+    = @shorty.code
+    %br
+    Your url is:
+    = @shorty.url
+    %br
+    Your link is: 
+    = link_to short_code_url(@shorty), short_code_url(@shorty)

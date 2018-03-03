@@ -1,0 +1,7 @@
+require 'autotest/bundler'
+#require 'autotest/once'
+
+Autotest.add_hook :initialize do |at|
+  at.add_exception %r@\A./log/@
+  at.add_exception %r@\A./.git/@
+end
