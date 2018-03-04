@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   
   resources :short_codes, path: 's', param: :code, only: [:show, :create]
 
+  get "/stats/:short_code_id", to: "stats#index", as: "stats"
+
   root to: "welcome#index"
 end
