@@ -7,7 +7,9 @@ class ShortCodesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_create
-    post short_codes_url, params: { short_code: { url: @url} }
+    assert_difference('ShortCode.count') do
+      post short_codes_url, params: { short_code: { url: @url} }
+    end
     assert_redirected_to root_url(code: @code)
     assert_equal "Congradulations! You've shortened a url!", flash[:notice]
     assert_equal @url, ShortCode.find_by(code: @code).url

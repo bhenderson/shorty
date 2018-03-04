@@ -30,4 +30,4 @@ autotest
 none.
 
 * Starting the server
-`rails s` will work for development
+`rails server` will work for development
