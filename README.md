@@ -1,5 +1,8 @@
 # README
 
+Github repo:
+https://github.com/bhenderson/shorty
+
 Simple Rails app for shortening a URL.
 
 * Ruby version
